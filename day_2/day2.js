@@ -64,6 +64,21 @@ function GetCommonBoxes(){
           for(var j = i+1; j<lines.length; j++)
           {
             var lineTwo = lines[j];
+            var indexesToRemove = new Array();
+            for(var ch = 0; ch < lineOne.length; ch++)
+            {
+                if(lineOne[ch] !== lineTwo[ch])
+                {
+                    // remove that characters
+                    indexesToRemove.push(ch);
+                }
+            }
+
+            if(indexesToRemove.length === 1)
+            {
+                var newLine = lineOne.substr(0, indexesToRemove[0]) + lineOne.substr(indexesToRemove[0]+1, lineOne.length-1);
+                console.log(lineOne, lineTwo, newLine);
+            }
           }
       }
   }
