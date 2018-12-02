@@ -54,5 +54,17 @@ function GetChecksum()
 };
 
 function GetCommonBoxes(){
-    
+  var lines = Helper.FileLines;
+  
+  if(lines != null || typeof(lines) !== "undefined")
+  {
+      for(var i = 0; i<lines.length; i++)
+      {
+          var lineOne = lines[i];
+          for(var j = i+1; j<lines.length; j++)
+          {
+            var lineTwo = lines[j];
+          }
+      }
+  }
 };
