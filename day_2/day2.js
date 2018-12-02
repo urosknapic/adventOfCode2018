@@ -77,7 +77,7 @@ function GetCommonBoxes(){
             if(indexesToRemove.length === 1)
             {
                 var newLine = lineOne.substr(0, indexesToRemove[0]) + lineOne.substr(indexesToRemove[0]+1, lineOne.length-1);
-                console.log(lineOne, lineTwo, newLine);
+                Helper.ShowOutput("output", newLine);
             }
           }
       }
