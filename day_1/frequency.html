@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Day 1 - Adventni koledar 2018</title>
+        <script src="day1.js"></script>  
+        <style>
+            #output{
+                height: 90%;
+                overflow-y: scroll;
+            }
+        </style>      
+    </head>
+    <body>
+        <div>
+            <input id="fileInput" type="file" accept='text/plain' onchange='readFile(event)'/>
+            <input id="getFreq" type="button" value="Get frequency" onclick="getFrequency()" disabled/>
+            <input id="getRepeated" type="button" value="Get repeated freq" onclick="getRepeatedFrequency()" disabled>
+            <div id="output"></div>
+        </div>
+    </body>
+</html>
