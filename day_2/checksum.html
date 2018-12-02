@@ -2,10 +2,12 @@
     <head>
         <meta charset="utf-8"/>
         <title>Day 2 - Advent of Code 2018</title>
+        <script src="../helpers/helpers.js"></script>
         <script src="day2.js"></script>  
     </head>
     <body>
-        <input id="fileInput" type="file" accept='text/plain' onchange='readFile(event)'/>
+        <input id="fileInput" type="file" accept='text/plain' onchange='Helper.ReadFileByNewLines(event)'/>
+        <input type="button" value="Get checksum" onclick="GetChecksum()"/>
         <div id="output"></div>
     </body>
 </body>

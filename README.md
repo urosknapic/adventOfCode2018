@@ -5,4 +5,4 @@ Well not much. You need your favourite browser. I am working on Firefox. As code
 
 ## Authors
 Well author is me:
-* **Uroš Knapič** - *Initial work* - [PurpleBooth](https://github.com/urosknapic)
+* **Uroš Knapič** - *Initial work* - [My github](https://github.com/urosknapic)
