@@ -1,44 +1,30 @@
-var fileLines;
 var frequnecy = 0;
 var mapArr = new Map();
 
-function showOutput(text)
+Helper.CustomFunction = function()
 {
-  document.getElementById('output').innerText = text;
-};
-
-function readFile(inputFile)
-{
-    var input = inputFile.target;
-    var reader = new FileReader();
-    reader.onload = function()
-    {
-      fileLines = reader.result.split("\r\n"); // get content splited by new lines
-      for(var i = 0; i<fileLines.length; i++)
-      {
-        fileLines[i] = fileLines[i].trim();
-      }
-      showOutput(reader.result);
-    };
-    reader.readAsText(input.files[0]);
-    document.getElementById("getFreq").disabled = false;
-    document.getElementById("getRepeated").disabled = false;    
-    fileLines = null;
-    frequnecy = 0;
-    mapArr = new Map();
+  // this overrides CustomFunction and it is triggered after reading function
+  // if we read new file, restore values and enable buttons
+  // when calling Helper.ReadFileByNewLines set flag runExtraFunction = true for its auto execution;
+  // this should be ovveriden method.
+  document.getElementById("getFreq").disabled = false;
+  document.getElementById("getRepeated").disabled = false;    
+  fileLines = null;
+  frequnecy = 0;
+  mapArr = new Map();
 };
 
 function getFrequency()
 {
   // this is part one of day 1  
-  if(typeof(fileLines) === "undefined")
+  if(typeof(Helper.FileLines) === "undefined")
   {
     showOutput("ops.. Nothing from input.. cant do shit about it");
   } 
   else
   {
     // lets process lines
-    fileLines.forEach(function(line, index)
+    Helper.FileLines.forEach(function(line, index)
     {
       var isnum = /^(?:[+\d|\-\d].*\d|\d)$/.test(line);
       if(!isnum)
@@ -52,19 +38,20 @@ function getFrequency()
     });
 
     if(frequnecy === 0 || frequnecy > 0)
-      showOutput("Answer is: " + frequnecy);
+      Helper.ShowOutput("output", "Answer is: " + frequnecy);
     else if(frequnecy < 0)
-      showOutput("Answer is: -" + frequnecy);
+      Helper.ShowOutput("output", "Answer is: -" + frequnecy);
     else
-      showOutput("Something went wrong");
+      Helper.ShowOutput("output", "Something went wrong");
   }
 }
 
 function getRepeatedFrequency()
 {
-  if(typeof(fileLines) === "undefined")
+  //part two
+  if(typeof(Helper.FileLines) === "undefined")
   {
-    showOutput("ops.. Nothing from input.. cant do shit about it");
+    Helper.ShowOutput("output", "ops.. Nothing from input.. cant do shit about it");
   } 
   else
   {
@@ -74,12 +61,12 @@ function getRepeatedFrequency()
     var i = 0;
     while(!isDoubled)
     {
-      if(i >= fileLines.length)
+      if(i >= Helper.FileLines.length)
       {
         repeats++;
         i = 0;
       }
-      var number = parseInt(fileLines[i]);
+      var number = parseInt(Helper.FileLines[i]);
       var isnum = !isNaN(number);
       if(isnum)
       {
@@ -90,7 +77,7 @@ function getRepeatedFrequency()
         {
           //if yes, return
           isDoubled = true;
-          showOutput("Twice repeated frequency is: " + frequnecy);
+          Helper.ShowOutput("output", "Twice repeated frequency is: " + frequnecy);
           console.log("From begining: " + repeats, 
             "index: " + i, 
             "number: " + number, 
@@ -106,6 +93,5 @@ function getRepeatedFrequency()
       }
       i++;
     }
-    //if end of input list, start at beginning
   }
 }
