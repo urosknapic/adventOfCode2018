@@ -6,7 +6,7 @@ function readData(event) {
         reader.onload = function(){
             var text = reader.result;
             inputIntegers = text.split('\r\n');
-            console.log(inputIntegers);
+            // console.log(inputIntegers);
             testComputer(inputIntegers);
             // resultNode.innerText = "Answer of first part: " + firstPart + ", and second: " + secondPart;
         };
@@ -76,12 +76,14 @@ function testComputer(_inputArray){
     var finalArray = [];
     _inputArray.forEach(function(el, i){
         var index = 0;
+        var noun = 12;
+        var verb = 2;
         oldSubarray = el; // as test i want to check if this value became final array properly
         finalArray = el.split(",");
         if(index === 0){
             // replace at position 1 with 12, and 2 with 2
-            finalArray[1] = "12";
-            finalArray[2] = "2";
+            finalArray[1] = noun;
+            finalArray[2] = verb;
         }
         // Read opcode;
         while(index < finalArray.length) {
@@ -97,16 +99,12 @@ function testComputer(_inputArray){
                 case 99:
                 //exit program
                 finalArray = finalArray.join(",");
-                console.log("Old: ", oldSubarray);
-                console.log("New: ", finalArray);
+                console.log(noun, verb, "New: ", finalArray.split(",")[0], 100*noun+verb);
                 return;
                 break;
             }
             index += 4;
         }
-        finalArray = finalArray.join(",");
-        console.log("Old: ", oldSubarray);
-        console.log("New: ", finalArray);
     });
 }
 
