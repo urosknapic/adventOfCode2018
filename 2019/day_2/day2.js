@@ -1,5 +1,6 @@
 var inputIntegers = [];
-function readData(event) { 
+function firstPart(event) { 
+    console.log("Part one");
     // TODO: Read input file
     var input = event.target;
     var reader = new FileReader();
@@ -7,7 +8,29 @@ function readData(event) {
             var text = reader.result;
             inputIntegers = text.split('\r\n');
             // console.log(inputIntegers);
-            testComputer(inputIntegers);
+            var noun = 12;
+            var verb = 2;
+            testComputer(inputIntegers, noun, verb);
+            // resultNode.innerText = "Answer of first part: " + firstPart + ", and second: " + secondPart;
+        };
+        reader.readAsText(input.files[0]);
+};
+
+function secondPart(event) { 
+    console.log("Part two");
+    // TODO: Read input file
+    var input = event.target;
+    var reader = new FileReader();
+        reader.onload = function(){
+            var text = reader.result;
+            inputIntegers = text.split('\r\n');
+            for(var i = 0; i<100; i++){
+                for(var j = 0; j<100; j++){
+                    var noun = i;
+                    var verb = j;
+                    testComputer(inputIntegers, noun, verb);
+                }
+            }
             // resultNode.innerText = "Answer of first part: " + firstPart + ", and second: " + secondPart;
         };
         reader.readAsText(input.files[0]);
@@ -19,8 +42,6 @@ function testComputer(_inputArray, noun, verb){
     var finalArray = [];
     _inputArray.forEach(function(el, i){
         var index = 0;
-        var noun = 12;
-        var verb = 2;
         oldSubarray = el; // as test i want to check if this value became final array properly
         finalArray = el.split(",");
         if(index === 0){
@@ -42,7 +63,12 @@ function testComputer(_inputArray, noun, verb){
                 case 99:
                 //exit program
                 finalArray = finalArray.join(",");
-                console.log(noun, verb, "New: ", finalArray.split(",")[0], 100*noun+verb);
+                if(noun === 12 && verb === 2){
+                    document.querySelector("#output").innerHTML += "First part answer: " + finalArray.split(",")[0] + "<br>";
+                }
+                if(parseInt(finalArray.split(",")[0]) === 19690720){
+                    document.querySelector("#output").innerHTML += "Second part answer: " + (100*noun+verb) + "<br>";
+                }
                 return;
                 break;
             }
